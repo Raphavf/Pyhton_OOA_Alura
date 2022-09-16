@@ -19,30 +19,48 @@ class Programa:
     def nome(self, nome):
         self._nome = nome
 
-    def imprime(self):
-        print(f'{self._nome} - {self.ano} D - {self._likes} Likes')
+    def __str__(self):
+        return f'{self._nome} - {self.ano} D - {self._likes} Likes'
 
 class Filme(Programa):
     def __init__(self, nome, ano, duracao):
         super().__init__(nome, ano)
         self.duracao = duracao
 
-    def imprime(self):
-        print(f'{self._nome} - {self.ano} - {self.duracao} min - {self._likes} Likes')
+    def __str__(self):
+        return f'{self._nome} - {self.ano} - {self.duracao} min - {self._likes} Likes'
 
 class Serie(Programa):
     def __init__(self, nome, ano, temporadas):
         super().__init__(nome, ano)
         self.temporadas = temporadas
 
-    def imprime(self):
-        print(f'{self._nome} - {self.ano} - {self.temporadas} Temporadas - {self._likes} Likes')
+    def __str__(self):
+        return f'{self._nome} - {self.ano} - {self.temporadas} Temporadas - {self._likes} Likes'
+
+class Playlist:
+    def __init__(self, nome, programas):
+        self.nome = nome
+        self. programas = programas
+
+    def tamanho(self):
+        return len(self.programas)
 
 vingadores = Filme('vingadores - guerra infinita', 2018, 160)
 atlanta = Serie('atlanta', 2018, 2)
+tmep = Filme('Todo mundo em panico', 1999, 100)
+demolidor = Serie('Demolidor', 2016, 3)
+
 vingadores.dar_likes()
 vingadores.dar_likes()
 vingadores.dar_likes()
+tmep.dar_likes()
+tmep.dar_likes()
+tmep.dar_likes()
+demolidor.dar_likes()
+demolidor.dar_likes()
+demolidor.dar_likes()
+demolidor.dar_likes()
 
 atlanta.dar_likes()
 atlanta.dar_likes()
@@ -50,7 +68,8 @@ atlanta.dar_likes()
 #print(f'Nome: {vingadores.nome} - Likes: {vingadores.likes}')
 #print(f'Nome: {atlanta.nome} - Likes: {atlanta.likes}')
 
-filmes_e_series = [vingadores, atlanta]
+filmes_e_series = [vingadores, atlanta, demolidor, tmep]
+playlist_fim_de_semana = Playlist('fds',filmes_e_series)
 
-for programa in filmes_e_series:
-    programa.imprime()
+for programa in playlist_fim_de_semana.programas:
+    print(programa)
